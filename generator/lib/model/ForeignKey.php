@@ -358,7 +358,7 @@ class ForeignKey extends XMLElement
     public function addReference($p1, $p2 = null)
     {
         if (is_array($p1)) {
-            $this->addReference(@$p1["local"], @$p1["foreign"]);
+            $this->addReference(isset($p1["local"]) ? $p1["local"] : null, isset($p1["foreign"]) ? $p1["foreign"] : null);
         } else {
             if ($p1 instanceof Column) {
                 $p1 = $p1->getName();

@@ -156,7 +156,7 @@ class XmlToAppData
             switch ($name) {
                 case "database":
                     if ($this->isExternalSchema()) {
-                        $this->currentPackage = @$attributes["package"];
+                        $this->currentPackage = isset($attributes["package"]) ? $attributes["package"] : null;
                         if ($this->currentPackage === null) {
                             $this->currentPackage = $this->defaultPackage;
                         }
@@ -173,12 +173,12 @@ class XmlToAppData
             switch ($name) {
 
                 case "external-schema":
-                    $xmlFile = @$attributes["filename"];
+                    $xmlFile = isset($attributes["filename"]) ? $attributes["filename"] : null;
 
                     // "referenceOnly" attribute is valid in the main schema XML file only,
                     // and it's ignored in the nested external-schemas
                     if (!$this->isExternalSchema()) {
-                        $isForRefOnly = @$attributes["referenceOnly"];
+                        $isForRefOnly = isset($attributes["referenceOnly"]) ? $attributes["referenceOnly"] : null;
                         $this->isForReferenceOnly = ($isForRefOnly !== null ? (strtolower($isForRefOnly) === "true") : true); // defaults to TRUE
                     }
 
