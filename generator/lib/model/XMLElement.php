@@ -8,8 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/VendorInfo.php';
-
 /**
  * An abstract class for elements represented by XML tags (e.g. Column, Table).
  *
@@ -133,6 +131,7 @@ abstract class XMLElement
      */
     public function addVendorInfo($data)
     {
+        require_once dirname(__FILE__) . '/VendorInfo.php';
         if ($data instanceof VendorInfo) {
             $vi = $data;
             $this->vendorInfos[$vi->getType()] = $vi;
@@ -153,6 +152,7 @@ abstract class XMLElement
      */
     public function getVendorInfoForType($type)
     {
+        require_once dirname(__FILE__) . '/VendorInfo.php';
         if (isset($this->vendorInfos[$type])) {
             return $this->vendorInfos[$type];
         } else {
